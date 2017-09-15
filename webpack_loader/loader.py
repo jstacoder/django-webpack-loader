@@ -29,9 +29,8 @@ class WebpackLoader(object):
             stats_file = self.config['STATS_FILE'].split('/')[-1]
             url = "{}/{}".format(self.config['STATS_FILE_URL'], stats_file)
             with requests.get(url) as response:
-                data = unicode(response.content)
                 with open(self.config['STATS_FILE'], 'w', encoding='utf-8') as f:
-                    f.write(data)
+                    json.dump(f, unicode(response.content))
         try:
             with open(self.config['STATS_FILE'], encoding="utf-8") as f:
                 return json.load(f)
