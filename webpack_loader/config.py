@@ -14,7 +14,9 @@ DEFAULT_CONFIG = {
         # FIXME: Explore usage of fsnotify
         'POLL_INTERVAL': 0.1,
         'TIMEOUT': None,
-        'IGNORE': ['.+\.hot-update.js', '.+\.map']
+        'IGNORE': ['.+\.hot-update.js', '.+\.map'],
+        'REMOTE_STATS_FILE': False,
+        'STATS_FILE_URL': None,
     }
 }
 

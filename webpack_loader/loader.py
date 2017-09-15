@@ -1,5 +1,8 @@
+import os
 import json
 import time
+import requests
+
 from io import open
 
 from django.conf import settings
@@ -22,6 +25,13 @@ class WebpackLoader(object):
         self.config = load_config(self.name)
 
     def _load_assets(self):
+        if self.config['REMOTE_STATS_FILE']:
+            stats_file = self.config['STATS_FILE'].split('/')[-1]
+            url = "{}/{}".format(self.config['STATS_FILE_URL'], stats_file)
+            with requests.get(url) as response:
+                data = response.content
+                with open(self.config['STATS_FILE'], 'w') as f:
+                    f.write(content)
         try:
             with open(self.config['STATS_FILE'], encoding="utf-8") as f:
                 return json.load(f)
