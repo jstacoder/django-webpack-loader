@@ -31,7 +31,7 @@ class WebpackLoader(object):
             with requests.get(url) as response:
                 data = response.content
                 with open(self.config['STATS_FILE'], 'w') as f:
-                    f.write(content)
+                    f.write(data)
         try:
             with open(self.config['STATS_FILE'], encoding="utf-8") as f:
                 return json.load(f)
